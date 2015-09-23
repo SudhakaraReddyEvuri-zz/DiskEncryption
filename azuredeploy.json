@@ -18,7 +18,6 @@
         },
         "AADClientSecret": {
             "type": "string",
-            "defaultValue":"e8335678-2063-4620-afa3-5ba815e27fd3",
             "metadata": {
                 "Description": "Client Secret of AAD app which has permissions to KeyVault"
             }
