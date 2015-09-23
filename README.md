@@ -4,4 +4,4 @@
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-This template creates an Encrypted VM on Azure
+This template enables encryption on a running Windows VM in Azure 
