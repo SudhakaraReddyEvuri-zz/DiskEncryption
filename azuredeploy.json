@@ -39,7 +39,7 @@
         },
         "KeyEncryptionKeyURL": {
             "type": "string",
-            "defaultValue":"https://sureddcrptipvault.vault.azure.net:443/keys/TestKey/537e791bd5f445fb9c35baa70e917d4d",
+            "defaultValue":"https://sureddcrptipvault.vault.azure.net/keys/TestKey/537e791bd5f445fb9c35baa70e917d4d",
             "metadata": {
                 "Description": "URL of the KeyEncryptionKey used to encrypt the volume encryption key"
             }
