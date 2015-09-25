@@ -38,14 +38,14 @@
         },
         "KeyEncryptionKeyURL": {
             "type": "string",
-            "defaultValue":"https://sureddcrptipvault.vault.azure.net/keys/TestKey/537e791bd5f445fb9c35baa70e917d4d",
+            "defaultValue":"",
             "metadata": {
                 "Description": "URL of the KeyEncryptionKey used to encrypt the volume encryption key"
             }
         },
         "KeyEncryptionAlgorithm": {
             "type": "string",
-	    "defaultValue": "RSA-OAEP",
+	    "defaultValue": "",
             "metadata": {
                 "Description": "KeyEncryption Algorithm used to encrypt the volume encryption key"
             }
