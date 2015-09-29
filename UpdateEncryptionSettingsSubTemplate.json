@@ -1,0 +1,75 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters":{
+        "vmName": {
+            "type": "string",
+            "metadata": {
+                "Description": "Name of the virtual machine"
+            }
+        },  
+        "location": {
+            "type":"string",
+            "metadata": {
+                "Description": "location of the VM resource"
+            }
+        },
+        "osDiskName": {
+            "type":"string",
+            "metadata": {
+                "Description": "Name of the OS disk"
+            }
+        },      
+        "KeyVaultResourceID": {
+            "type":"string",
+            "metadata": {
+                "Description": "Resource ID of the KeyVault in which secret and key encryption key are present"
+            }
+        },  
+        "secretURL": {
+            "type":"string",
+            "metadata": {
+                "Description": "KeyVault secret URL of the encryption secret"
+            }
+        },  
+        "KeyEncryptionKeyURL": {
+            "type":"string",
+            "defaultValue":"",
+            "metadata": {
+                "Description": "KeyVault key URL of the Key encryption key wrapping secret"
+            }
+        }           
+    }
+    "resources": [
+    {
+      "apiVersion": "2015-06-15",
+      "type": "Microsoft.Compute/virtualMachines",
+      "name": "[parameters('vmName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "storageProfile": {
+          "osDisk": {
+            "name": "osdisk",
+            "encryptionSettings": {
+              "diskEncryptionKey": {
+                "sourceVault": {
+                  "id": "[parameters('KeyVaultResourceID')]"
+                },
+                "secretUrl": "[parameters('secretURL')]"
+              },
+              "keyEncryptionKey":
+              {
+                "sourceVault": {
+                  "id": "[parameters('KeyVaultResourceID')]"
+                },
+                "keyUrl": "[parameters('KeyEncryptionKeyURL')]"
+              }          
+           }
+          }
+        }
+      }
+    }
+    ]
+}
+
+
