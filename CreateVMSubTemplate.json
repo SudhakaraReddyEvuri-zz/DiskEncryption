@@ -1,10 +1,13 @@
-{
+{ 
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-     "parameters": {
-     	"vmName": {
-     		"type": "string"
-     	},
+    "parameters": {
+        "vmName": {
+            "type": "string",
+            "metadata": {
+                "Description": "Name of the virtual machine"
+            }
+        },
      	"location": {
      		"type": "string"
      	},
