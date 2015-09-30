@@ -14,3 +14,11 @@ This template enables encryption on a running Windows VM in Azure
 </a>
 
 This template creates a new encrypted Windows VM in Azure 
+
+# New encrypted Windows VM
+
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSudhakaraReddyEvuri%2FDiskEncryption%2Fmaster%2FNewEncryptedVM.json" target="_blank">
+    <img src="http://azuredeploy.net/deploybutton.png"/>
+</a>
+
+This template creates a new encrypted Windows VM in Azure 
