@@ -14,7 +14,7 @@
                 "Description": "AADClientSecret"
             }
         }
-    }
+    },
     "variables": {
         "AADClientID":"97f847ef-9e1e-4c7c-9ae7-1c0f7c78f761",
         "KeyVaultResourceID":"/subscriptions/98a2d751-10a7-4f96-aea1-3aaa8a91ead1/resourceGroups/sureddrg/providers/Microsoft.KeyVault/vaults/sureddcrptipvault",
@@ -48,7 +48,6 @@
         "publicIPAddressName": "[toLower(concat('publicIP',parameters('vmName')))]",
         "publicIPAddressType": "Dynamic"
     },
-
     "resources": [
         {
             "name": "CreateVM",
