@@ -11,7 +11,7 @@
      	"location": {
      		"type": "string"
      	},
-        "OSDiskProfile": {
+        "osDiskProfile": {
             "type": "object",
             "metadata": {
                 "Description": "osDiskProfile properties of the virtual machine"
@@ -99,7 +99,7 @@
                         "sku" : "[variables('osSku')]",
                         "version":"[variables('osVersion')]"
                     },
-                   "osDisk" : "[variables('osDiskProfile')]"
+                   "osDisk" : "[parameters('osDiskProfile')]"
                 },
                 "networkProfile": {
                     "networkInterfaces": [
