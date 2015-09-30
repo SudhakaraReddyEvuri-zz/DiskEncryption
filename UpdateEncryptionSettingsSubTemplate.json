@@ -39,7 +39,7 @@
                 "Description": "KeyVault key URL of the Key encryption key wrapping secret"
             }
         }           
-    }
+    },
     "resources": [
     {
       "apiVersion": "2015-06-15",
