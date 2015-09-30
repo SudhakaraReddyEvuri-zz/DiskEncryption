@@ -7,17 +7,25 @@
 This template enables encryption on a running Windows VM in Azure 
 
 
-# Create a new encrypted Windows VM
+# Create a new encrypted Windows VM1
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSudhakaraReddyEvuri%2FDiskEncryption%2Fmaster%2FCreateNewEncryptedWindowsVM.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSudhakaraReddyEvuri%2FDiskEncryption%2Fmaster%2FNewEncryptedVM1.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
 This template creates a new encrypted Windows VM in Azure 
 
-# New encrypted Windows VM
+# Create a new encrypted Windows VM2
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSudhakaraReddyEvuri%2FDiskEncryption%2Fmaster%2FNewEncryptedVM.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSudhakaraReddyEvuri%2FDiskEncryption%2Fmaster%2FNewEncryptedVM2.json" target="_blank">
+    <img src="http://azuredeploy.net/deploybutton.png"/>
+</a>
+
+This template creates a new encrypted Windows VM in Azure 
+
+# Create a new encrypted Windows VM3
+
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSudhakaraReddyEvuri%2FDiskEncryption%2Fmaster%2FNewEncryptedVM3.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
