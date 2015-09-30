@@ -1,20 +1,24 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-	"parameters": {
+     "parameters": {
+     	"vmName": {
+     		"type": "string"
+     	},
+     	"location": {
+     		"type": "string"
+     	},
         "OSDiskProfile": {
             "type": "object",
             "metadata": {
                 "Description": "osDiskProfile properties of the virtual machine"
             }
         }	
-	},
+      },
     "variables": {
-        "vmName": "sureddTipWinvm8",
         "vmSize": "Standard_A2",
         "adminUsername": "rdtest",
         "adminPassword": "rdPa$$w0rd",
-        "location": "westus",
         "osSku": "R2",
         "imagePublisher": "AzureRT.PIRCore.TestWAStage",
         "imageOffer": "TestWindowsServer2012",
@@ -25,9 +29,9 @@
         "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
         "subnetName": "Subnet",
         "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
-        "dnsNameForPublicIP": "[toLower(variables('vmName'))]",
-        "nicName": "[toLower(concat('nic',variables('vmName')))]",
-        "publicIPAddressName": "[toLower(concat('publicIP',variables('vmName')))]",
+        "dnsNameForPublicIP": "[toLower(parameters('vmName'))]",
+        "nicName": "[toLower(concat('nic',parameters('vmName')))]",
+        "publicIPAddressName": "[toLower(concat('publicIP',parameters('vmName')))]",
         "publicIPAddressType": "Dynamic"
     },
 
@@ -36,7 +40,7 @@
             "apiVersion": "2015-05-01-preview",
             "type": "Microsoft.Network/publicIPAddresses",
             "name": "[variables('publicIPAddressName')]",
-            "location": "[variables('location')]",
+            "location": "[parameters('location')]",
             "properties": {
                 "publicIPAllocationMethod": "[variables('publicIPAddressType')]",
                 "dnsSettings": {
@@ -48,7 +52,7 @@
             "apiVersion": "2015-05-01-preview",
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[variables('nicName')]",
-            "location": "[variables('location')]",
+            "location": "[parameters('location')]",
             "dependsOn": [
                 "[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'))]"
             ],
@@ -72,8 +76,8 @@
         {
             "apiVersion": "2015-05-01-preview",
             "type": "Microsoft.Compute/virtualMachines",
-            "name": "[variables('vmName')]",
-            "location": "[variables('location')]",
+            "name": "[parameters('vmName')]",
+            "location": "[parameters('location')]",
             "dependsOn": [
                 "[concat('Microsoft.Network/networkInterfaces/', variables('nicName'))]"
             ],
@@ -82,7 +86,7 @@
                     "vmSize": "[variables('vmSize')]"
                 },
                 "osProfile": {
-                    "computername": "[variables('vmName')]",
+                    "computername": "[parameters('vmName')]",
                     "adminUsername": "[variables('adminUsername')]",
                     "adminPassword": "[variables('adminPassword')]"
                 },
