@@ -1,7 +1,7 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-	"parameters": {
+    "parameters": {
         "vmName": {
             "type": "string",
             "metadata": {
@@ -17,7 +17,7 @@
                 "Description": "osDiskProfile properties of the virtual machine"
             }
         }	
-      },
+    },
     "variables": {
         "vmSize": "Standard_A2",
         "adminUsername": "rdtest",
@@ -37,7 +37,6 @@
         "publicIPAddressName": "[toLower(concat('publicIP',parameters('vmName')))]",
         "publicIPAddressType": "Dynamic"
     },
-
     "resources": [
         {
             "apiVersion": "2015-05-01-preview",
