@@ -1,9 +1,16 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
+    "parameters": {
+    	"vmName": {
+    		"type": "string"
+    	},
+    	"AADClientSecret": {
+    		"type": "string"
+    	}
+    }
     "variables": {
         "AADClientID":"97f847ef-9e1e-4c7c-9ae7-1c0f7c78f761",
-        "AADClientSecret":"",
         "KeyVaultResourceID":"/subscriptions/98a2d751-10a7-4f96-aea1-3aaa8a91ead1/resourceGroups/sureddrg/providers/Microsoft.KeyVault/vaults/sureddcrptipvault",
         "KeyVaultURL":"https://sureddcrptipvault.vault.azure.net/",
         "KeyEncryptionKeyURL":"https://sureddcrptipvault.vault.azure.net/keys/TestKey/537e791bd5f445fb9c35baa70e917d4d",
@@ -12,7 +19,6 @@
         "extensionName": "ADETestExtension",
         "extensionVersion":"1.2",
         "encryptionOperation":"EnableEncryption",
-        "vmName": "sureddTipWinvm5",
         "vmSize": "Standard_A2",
         "adminUsername": "rdtest",
         "adminPassword": "rdPa$$w0rd",
@@ -22,7 +28,7 @@
         "imageOffer": "TestWindowsServer2012",
         "osVersion":"latest",
         "storageAccountName": "sureddcrptipstore",
-        "OSDiskName": "[toLower(concat('osDisk',variables('vmName')))]",
+        "OSDiskName": "[toLower(concat('osDisk',parameters('vmName')))]",
         "vmStorageAccountContainerName": "vhds",
         "virtualNetworkName": "MyVNET",
         "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
@@ -30,9 +36,9 @@
         "addressPrefix": "10.0.0.0/16",
         "subnetPrefix": "10.0.0.0/24", 
         "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
-        "dnsNameForPublicIP": "[toLower(variables('vmName'))]",
-        "nicName": "[toLower(concat('nic',variables('vmName')))]",
-        "publicIPAddressName": "[toLower(concat('publicIP',variables('vmName')))]",
+        "dnsNameForPublicIP": "[toLower(parameters('vmName'))]",
+        "nicName": "[toLower(concat('nic',parameters('vmName')))]",
+        "publicIPAddressName": "[toLower(concat('publicIP',parameters('vmName')))]",
         "publicIPAddressType": "Dynamic"
     },
 
@@ -77,7 +83,7 @@
         {
             "apiVersion": "2015-06-15",
             "type": "Microsoft.Compute/virtualMachines",
-            "name": "[variables('vmName')]",
+            "name": "[parameters('vmName')]",
             "location": "[variables('location')]",
             "dependsOn": [
                 "[concat('Microsoft.Network/networkInterfaces/', variables('nicName'))]"
@@ -87,7 +93,7 @@
                     "vmSize": "[variables('vmSize')]"
                 },
                 "osProfile": {
-                    "computername": "[variables('vmName')]",
+                    "computername": "[parameters('vmName')]",
                     "adminUsername": "[variables('adminUsername')]",
                     "adminPassword": "[variables('adminPassword')]"
                 },
@@ -118,11 +124,11 @@
         },
         {
             "type": "Microsoft.Compute/virtualMachines/extensions",
-            "name": "[concat(variables('vmName'),'/', variables('extensionName'))]",
+            "name": "[concat(parameters('vmName'),'/', variables('extensionName'))]",
             "apiVersion": "2015-06-15",
             "location": "[variables('location')]",
             "dependsOn": [
-                "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
+                "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]"
             ],          
             "properties": {
               "publisher": "Microsoft.Azure.Security",
@@ -137,7 +143,7 @@
                   "EncryptionOperation": "[variables('encryptionOperation')]"
               },
               "protectedSettings": {
-                  "AADClientSecret": "[variables('AADClientSecret')]"
+                  "AADClientSecret": "[parameters('AADClientSecret')]"
               }
             }
         },  
@@ -146,7 +152,7 @@
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2015-01-01",
             "dependsOn": [
-                "[resourceId('Microsoft.Compute/virtualMachines/extensions',  variables('vmName'), variables('extensionName'))]"
+                "[resourceId('Microsoft.Compute/virtualMachines/extensions',  parameters('vmName'), variables('extensionName'))]"
             ],			
             "properties": {
                 "mode": "Incremental",
@@ -156,7 +162,7 @@
                 },
       	        "parameters": {
                     "vmName": {
-                    	"value": "[variables('vmName')]"
+                    	"value": "[parameters('vmName')]"
                     },
                     "location": {
 	                    "value": "[variables('location')]"
@@ -168,7 +174,7 @@
 	                    "value": "[variables('KeyVaultResourceID')]"
                     },
                     "secretURL": {
-	                    "value": "[reference(resourceId('Microsoft.Compute/virtualMachines/extensions',  variables('vmName'), variables('extensionName'))).instanceView.statuses[0].message]"
+	                    "value": "[reference(resourceId('Microsoft.Compute/virtualMachines/extensions',  parameters('vmName'), variables('extensionName'))).instanceView.statuses[0].message]"
                     },
                     "KeyEncryptionKeyURL": {
 	                    "value": "[variables('KeyEncryptionKeyURL')]"
