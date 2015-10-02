@@ -63,7 +63,7 @@
                     "vmName": {
                         "value": "[parameters('vmName')]"
                     },
-                    "osDiskProfile": {
+                    "osDisk": {
                         "value": {
                             "name": "osdisk",
                             "vhd": {
@@ -121,7 +121,7 @@
                     "vmName": {
                         "value": "[parameters('vmName')]"
                     },
-                    "osDiskProfile": {
+                    "osDisk": {
                         "value": {
                             "name": "osdisk",
                             "encryptionSettings": {
