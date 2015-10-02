@@ -2,12 +2,18 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-    	"vmName": {
-    		"type": "string"
-    	},
-    	"AADClientSecret": {
-    		"type": "string"
-    	}
+        "vmName": {
+            "type": "string",
+            "metadata": {
+                "Description": "Name of the virtual machine"
+            }
+        },
+        "AADClientSecret": {
+            "type": "string",
+            "metadata": {
+                "Description": "AADClientSecret"
+            }
+        }
     },
     "variables": {
         "AADClientID":"97f847ef-9e1e-4c7c-9ae7-1c0f7c78f761",
