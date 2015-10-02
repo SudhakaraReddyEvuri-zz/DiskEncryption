@@ -129,31 +129,6 @@
             }
         },
         {
-            "type": "Microsoft.Compute/virtualMachines/extensions",
-            "name": "[concat(parameters('vmName'),'/', variables('extensionName'))]",
-            "apiVersion": "2015-06-15",
-            "location": "[variables('location')]",
-            "dependsOn": [
-                "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]"
-            ],          
-            "properties": {
-              "publisher": "Microsoft.Azure.Security",
-              "type": "ADETest",
-              "typeHandlerVersion": "[variables('extensionVersion')]",
-              "settings": {
-                  "AADClientID": "[variables('AADClientID')]",
-                  "KeyVaultURL": "[variables('KeyVaultURL')]",
-                  "KeyEncryptionKeyURL": "[variables('KeyEncryptionKeyURL')]",
-                  "KeyEncryptionAlgorithm": "[variables('KeyEncryptionAlgorithm')]",
-                  "VolumeType": "[variables('VolumeType')]",
-                  "EncryptionOperation": "[variables('encryptionOperation')]"
-              },
-              "protectedSettings": {
-                  "AADClientSecret": "[parameters('AADClientSecret')]"
-              }
-            }
-        },  
-        {
             "name": "UpdateEncryptionSettings",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2015-01-01",
@@ -163,31 +138,34 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/SudhakaraReddyEvuri/DiskEncryption/master/UpdateEncryptionSettingsSubTemplate.json",
+                    "uri": "https://raw.githubusercontent.com/SudhakaraReddyEvuri/DiskEncryption/master/EnableEncryptionOnRunningWindowsVM.json",
                     "contentVersion": "1.0.0.0"
                 },
       	        "parameters": {
                     "vmName": {
                     	"value": "[parameters('vmName')]"
                     },
-                    "location": {
-	                    "value": "[variables('location')]"
+                    "AADClientID": {
+                    	"value": "[variables('AADClientID')]"
                     },
-                    "osDiskName": {
-	                    "value": "[variables('OSDiskName')]"
-                    },
+                    "AADClientSecret": {
+                    	"value": "[parameters('AADClientSecret')]"
+                    },   
                     "KeyVaultResourceID": {
 	                    "value": "[variables('KeyVaultResourceID')]"
-                    },
-                    "secretURL": {
-	                    "value": "[reference(resourceId('Microsoft.Compute/virtualMachines/extensions',  parameters('vmName'), variables('extensionName'))).instanceView.statuses[0].message]"
-                    },
+                    },    
+                    "KeyVaultURL": {
+	                    "value": "[variables('KeyVaultURL')]"
+                    },   
                     "KeyEncryptionKeyURL": {
 	                    "value": "[variables('KeyEncryptionKeyURL')]"
+                    },                    
+                    "location": {
+	                    "value": "[variables('location')]"
                     }
-				        }
+		}
             }   
-		    }
+	}
 	]		
 }
 
