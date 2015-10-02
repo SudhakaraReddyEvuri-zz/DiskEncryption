@@ -151,13 +151,13 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://github.com/SudhakaraReddyEvuri/DiskEncryption/blob/master/UpdateEncryptionSettingsSubTemplate.json",
+                    "uri": "https://raw.githubusercontent.com/SudhakaraReddyEvuri/DiskEncryption/master/UpdateEncryptionSettingsSubTemplate.json",
                     "contentVersion": "1.0.0.0"
                 },
       	        "parameters": {
                     "vmName": {
-					             "value": "[variables('vmName')]"
-				            },
+                    	"value": "[variables('vmName')]"
+                    },
                     "location": {
 	                    "value": "[variables('location')]"
                     },
