@@ -59,6 +59,10 @@
         "location": {
         	"type": "string",
         	"defaultValue": "West US"
+        },
+        "osDiskName": {
+        	"type": "string",
+        	"defaultValue": "[toLower(concat('osDisk',parameters('vmName')))]",        	
         }
     },
     "variables": {
@@ -101,7 +105,7 @@
       "properties": {
         "storageProfile": {
           "osDisk": {
-		    "name": "osdisk",
+		    "name": "[parameters('osDiskName')]",
             "encryptionSettings": {
               "diskEncryptionKey": {
                 "sourceVault": {
