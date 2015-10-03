@@ -34,7 +34,7 @@
         "imageOffer": "TestWindowsServer2012",
         "osVersion":"latest",
         "storageAccountName": "sureddcrptipstore",
-        "OSDiskName": "[toLower(concat('osDisk',parameters('vmName')))]",
+        "osDiskName": "[toLower(concat('osDisk',parameters('vmName')))]",
         "vmStorageAccountContainerName": "vhds",
         "virtualNetworkName": "MyVNET",
         "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
@@ -111,9 +111,9 @@
                         "version":"[variables('osVersion')]"
                     },
                    "osDisk" : {
-                        "name": "[variables('OSDiskName')]",
+                        "name": "[variables('osDiskName')]",
                         "vhd": {
-                            "uri": "[concat('http://',variables('storageAccountName'),'.blob.core.windows.net/',variables('vmStorageAccountContainerName'),'/',variables('OSDiskName'),'.vhd')]"
+                            "uri": "[concat('http://',variables('storageAccountName'),'.blob.core.windows.net/',variables('vmStorageAccountContainerName'),'/',variables('osDiskName'),'.vhd')]"
                         },
                         "caching": "ReadWrite",
                         "createOption": "FromImage"
@@ -162,6 +162,9 @@
                     },                    
                     "location": {
 	                    "value": "[variables('location')]"
+                    },
+                    "osDiskName": {
+                    	"value": "[variables('osDiskName')]"
                     }
 		}
             }   
