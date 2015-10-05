@@ -62,7 +62,7 @@
         },
         "osDiskName": {
         	"type": "string",
-        	"defaultValue": "[toLower(concat('osDisk',parameters('vmName')))]",        	
+        	"defaultValue": "[toLower(concat('osDisk',parameters('vmName')))]"    	
         }
     },
     "variables": {
