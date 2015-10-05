@@ -57,16 +57,22 @@
             }
         },
         "location": {
-        	"type": "string",
-        	"defaultValue": "West US"
+            "type": "string",
+            "metadata": {
+                "Description": "Location of the VM"
+            }        	
+        },
+        "osDiskName": {
+            "type": "string",
+            "metadata": {
+                "Description": "name of the OS disk on which encryption needs to be enabled"
+            }
         }
     },
     "variables": {
 	  "extensionName": "ADETestExtension",
 	  "extensionVersion": "1.2",
-      "encryptionOperation": "EnableEncryption",
-      "vmSize":"Standard_A1",
-      "osDiskName": "[toLower(concat('osDisk',parameters('vmName')))]"
+      "encryptionOperation": "EnableEncryption"
     },
     "resources": [
      {
@@ -86,9 +92,9 @@
                   "VolumeType": "[parameters('VolumeType')]",
                   "EncryptionOperation": "[variables('encryptionOperation')]"
               },
-          	  "protectedSettings": {
+              "protectedSettings": {
                   "AADClientSecret": "[parameters('AADClientSecret')]"
-	          }
+	      }
           }
     },
     {
@@ -102,7 +108,7 @@
       "properties": {
         "storageProfile": {
           "osDisk": {
-		    "name": "[variables('osDiskName')]",
+            "name": "[parameters('osDiskName')]",
             "encryptionSettings": {
               "diskEncryptionKey": {
                 "sourceVault": {
