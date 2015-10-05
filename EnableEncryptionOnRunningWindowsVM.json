@@ -59,17 +59,14 @@
         "location": {
         	"type": "string",
         	"defaultValue": "West US"
-        },
-        "osDiskName": {
-        	"type": "string",
-        	"defaultValue": "[toLower(concat('osDisk',parameters('vmName')))]"    	
         }
     },
     "variables": {
 	  "extensionName": "ADETestExtension",
 	  "extensionVersion": "1.2",
       "encryptionOperation": "EnableEncryption",
-      "vmSize":"Standard_A1"
+      "vmSize":"Standard_A1",
+      "osDiskName": "[toLower(concat('osDisk',parameters('vmName')))]"
     },
     "resources": [
      {
@@ -105,7 +102,7 @@
       "properties": {
         "storageProfile": {
           "osDisk": {
-		    "name": "[parameters('osDiskName')]",
+		    "name": "[variables('osDiskName')]",
             "encryptionSettings": {
               "diskEncryptionKey": {
                 "sourceVault": {
