@@ -46,12 +46,6 @@
                 "Description": "Type of the volume OS or Data to perform encryption operation"
             }
         },
-        "location": {
-            "type": "string",
-            "metadata": {
-                "Description": "Location of the VM"
-            }        	
-        },
         "osDiskName": {
             "type": "string",
             "metadata": {
@@ -70,7 +64,7 @@
           "type": "Microsoft.Compute/virtualMachines/extensions",
           "name": "[concat(parameters('vmName'),'/', variables('extensionName'))]",
           "apiVersion": "2015-06-15",
-          "location": "[parameters('location')]",
+          "location": "[resourceGroup().location]",
           "properties": {
               "publisher": "Microsoft.Azure.Security",
               "type": "ADETest",
@@ -92,7 +86,7 @@
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Compute/virtualMachines",
       "name": "[parameters('vmName')]",
-      "location": "[parameters('location')]",
+      "location": "[resourceGroup().location]",
       "dependsOn": [
         "[resourceId('Microsoft.Compute/virtualMachines/extensions',  parameters('vmName'), variables('extensionName'))]"
       ],
