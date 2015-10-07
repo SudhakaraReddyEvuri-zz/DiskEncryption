@@ -159,9 +159,6 @@
                     },   
                     "KeyEncryptionKeyURL": {
 	                    "value": "[variables('KeyEncryptionKeyURL')]"
-                    },                    
-                    "location": {
-	                    "value": "[variables('location')]"
                     }
 		}
             }   
