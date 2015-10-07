@@ -75,7 +75,7 @@
             "metadata": {
                 "Description": "URL of the KeyEncryptionKey used to encrypt the volume encryption key"
             }
-        },
+        }
     },
     "variables": {
     	"vmSize": "Standard_A2",
