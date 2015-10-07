@@ -8,13 +8,6 @@
                 "Description": "Name of the virtual machine"
             }
         },
-        "vmSize": {
-            "type": "string",
-            "defaultValue": "Standard_A2",
-            "metadata": {
-                "Description": "Size of the virtual machine"
-            }
-        },
         "adminUsername": {
             "type": "string",
             "metadata": {
@@ -22,39 +15,11 @@
             }
         },
         "adminPassword": {
-            "type": "string",
+            "type": "securestring",
             "metadata": {
                 "Description": "Admin user password for virtual machine"
             }
         },
-        "imagePublisher": {
-            "type": "string",
-            "defaultValue": "MicrosoftWindowsServer",
-            "metadata": {
-                "Description": "Publisher for OS image"
-            }
-        }, 
-        "imageOffer": {
-            "type": "string",
-            "defaultValue": "WindowsServer",
-            "metadata": {
-                "Description": "imageOffer of OS image"
-            }
-        },    
-        "imageOffer": {
-            "type": "string",
-            "defaultValue": "WindowsServer",
-            "metadata": {
-                "Description": "imageOffer of OS image"
-            }
-        },   
-        "osSku": {
-            "type": "string",
-            "defaultValue": "2012-R2-Datacenter",
-            "metadata": {
-                "Description": "SKU of OS image"
-            }
-        },     
         "storageAccountName": {
             "type": "string",
             "metadata": {
@@ -113,20 +78,17 @@
         },
     },
     "variables": {
-        "KeyEncryptionAlgorithm":"RSA-OAEP",
-        "VolumeType":"All",
-        "extensionName": "ADETestExtension",
-        "extensionVersion":"1.2",
-        "encryptionOperation":"EnableEncryption",
+    	"vmSize": "Standard_A2",
+    	"imagePublisher": "MicrosoftWindowsServer",
+    	"imageOffer": "WindowsServer",
+    	"osSku": "2012-R2-Datacenter",
         "osDiskName": "[toLower(concat('osDisk',parameters('vmName')))]",
-        "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
-        "addressPrefix": "10.0.0.0/16",
-        "subnetPrefix": "10.0.0.0/24", 
-        "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
+        "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',parameters('virtualNetworkName'))]",
+        "subnetRef": "[concat(variables('vnetID'),'/subnets/',parameters('subnetName'))]",
         "dnsNameForPublicIP": "[toLower(parameters('vmName'))]",
-        "nicName": "[toLower(concat('nic',parameters('vmName')))]",
         "publicIPAddressName": "[toLower(concat('publicIP',parameters('vmName')))]",
-        "publicIPAddressType": "Dynamic"
+        "publicIPAddressType": "Dynamic", 
+        "nicName": "[toLower(concat('nic',parameters('vmName')))]"
     },
 
     "resources": [
@@ -134,7 +96,7 @@
             "apiVersion": "2015-06-15",
             "type": "Microsoft.Network/publicIPAddresses",
             "name": "[variables('publicIPAddressName')]",
-            "location": "[variables('location')]",
+            "location": "[resourceGroup().location]",
             "properties": {
                 "publicIPAllocationMethod": "[variables('publicIPAddressType')]",
                 "dnsSettings": {
@@ -146,7 +108,7 @@
             "apiVersion": "2015-06-15",
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[variables('nicName')]",
-            "location": "[variables('location')]",
+            "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'))]"
             ],
@@ -171,7 +133,7 @@
             "apiVersion": "2015-06-15",
             "type": "Microsoft.Compute/virtualMachines",
             "name": "[parameters('vmName')]",
-            "location": "[variables('location')]",
+            "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[concat('Microsoft.Network/networkInterfaces/', variables('nicName'))]"
             ],
@@ -181,8 +143,8 @@
                 },
                 "osProfile": {
                     "computername": "[parameters('vmName')]",
-                    "adminUsername": "[variables('adminUsername')]",
-                    "adminPassword": "[variables('adminPassword')]"
+                    "adminUsername": "[parameters('adminUsername')]",
+                    "adminPassword": "[parameters('adminPassword')]"
                 },
                 "storageProfile": {
                     "imageReference": {
@@ -194,7 +156,7 @@
                    "osDisk" : {
                         "name": "[variables('osDiskName')]",
                         "vhd": {
-                            "uri": "[concat('http://',variables('storageAccountName'),'.blob.core.windows.net/',variables('vmStorageAccountContainerName'),'/',variables('osDiskName'),'.vhd')]"
+                            "uri": "[concat('http://',parameters('storageAccountName'),'.blob.core.windows.net/',parameters('vmStorageContainerName'),'/',variables('osDiskName'),'.vhd')]"
                         },
                         "caching": "ReadWrite",
                         "createOption": "FromImage"
@@ -227,19 +189,22 @@
                     	"value": "[parameters('vmName')]"
                     },
                     "AADClientID": {
-                    	"value": "[variables('AADClientID')]"
+                    	"value": "[parameters('AADClientID')]"
                     },
                     "AADClientSecret": {
                     	"value": "[parameters('AADClientSecret')]"
                     },   
                     "KeyVaultResourceID": {
-	                    "value": "[variables('KeyVaultResourceID')]"
+	                "value": "[parameters('KeyVaultResourceID')]"
                     },    
                     "KeyVaultURL": {
-	                    "value": "[variables('KeyVaultURL')]"
+	                "value": "[parameters('KeyVaultURL')]"
                     },   
                     "KeyEncryptionKeyURL": {
-	                    "value": "[variables('KeyEncryptionKeyURL')]"
+	                "value": "[parameters('KeyEncryptionKeyURL')]"
+                    },
+                    "osDiskName": {
+                    	"value": "[variables('osDiskName')]"
                     }
 		}
             }   
