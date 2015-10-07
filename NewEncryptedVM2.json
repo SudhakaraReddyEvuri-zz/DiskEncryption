@@ -151,7 +151,7 @@
                         "publisher": "[variables('imagePublisher')]",
                         "offer": "[variables('imageOffer')]",
                         "sku" : "[variables('osSku')]",
-                        "version":"[variables('osVersion')]"
+                        "version":"latest"
                     },
                    "osDisk" : {
                         "name": "[variables('osDiskName')]",
