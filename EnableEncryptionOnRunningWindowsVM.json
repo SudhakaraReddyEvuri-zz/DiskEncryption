@@ -93,7 +93,7 @@
       "properties": {
         "storageProfile": {
           "osDisk": {
-            "name": "[parameters('osDiskName')]",
+            "name": "[reference(resourceId('Microsoft.Compute/virtualMachines',  parameters('vmName'))).StorageProfile.OSDisk.Name]",
             "encryptionSettings": {
               "diskEncryptionKey": {
                 "sourceVault": {
