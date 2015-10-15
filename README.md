@@ -16,7 +16,7 @@ This template enables encryption on a running Windows VM in Azure  using AAD cli
 
 # Enable encryption on a running Windows VM using AAD Client cert thumbprint
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSudhakaraReddyEvuri%2FDiskEncryption%2Fmaster%2FEnableEncryptionOnRunningVM-AADClientCert.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSudhakaraReddyEvuri%2FDiskEncryption%2Fmaster%2FEnableEncryptionOnRunningWindowsVM-AADClientCert.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
