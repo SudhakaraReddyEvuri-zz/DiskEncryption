@@ -30,33 +30,33 @@ This template enables encryption on a running Windows VM in Azure using AAD clie
 
 This template enables encryption on a running Windows VM in Azure using AAD client cert thumbprint with Kek
 
-# Enable encryption on a running Linux VM using AAD Client secret
+# Enable encryption on a running Windows VM using AAD Client secret
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSudhakaraReddyEvuri%2FDiskEncryption%2Fmaster%2FEnableEncryptionOnRunningLinuxVM-AADClientSecret.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSudhakaraReddyEvuri%2FDiskEncryption%2Fmaster%2FEnableEncryptionOnRunningWindowsVM-AADClientSecret.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-This template enables encryption on a running Linux VM in Azure 
+This template enables encryption on a running Windows VM in Azure 
 
-# Enable encryption on a running Linux VM using AAD Client secret with Kek
+# Enable encryption on a running Windows VM using AAD Client secret with Kek
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSudhakaraReddyEvuri%2FDiskEncryption%2Fmaster%2FEnableEncryptionOnRunningLinuxVM-AADClientSecret-WithKek.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSudhakaraReddyEvuri%2FDiskEncryption%2Fmaster%2FEnableEncryptionOnRunningWindowsVM-AADClientSecret-WithKek.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-This template enables encryption on a running Linux VM in Azure  using AAD client secret and Kek
+This template enables encryption on a running Windows VM in Azure  using AAD client secret and Kek
 
-# Enable encryption on a running Linux VM using AAD Client cert thumbprint
+# Enable encryption on a running Windows VM using AAD Client cert thumbprint
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSudhakaraReddyEvuri%2FDiskEncryption%2Fmaster%2FEnableEncryptionOnRunningLinuxVM-AADClientCert.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSudhakaraReddyEvuri%2FDiskEncryption%2Fmaster%2FEnableEncryptionOnRunningWindowsVM-AADClientCert.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-This template enables encryption on a running Linux VM in Azure using AAD client cert thumbprint
+This template enables encryption on a running Windows VM in Azure using AAD client cert thumbprint
 
-# Enable encryption on a running Linux VM using AAD Client cert thumbprint with Kek
+# Enable encryption on a running Windows VM using AAD Client cert thumbprint with Kek
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSudhakaraReddyEvuri%2FDiskEncryption%2Fmaster%2FEnableEncryptionOnRunningLinuxVM-AADClientCert-WithKek.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSudhakaraReddyEvuri%2FDiskEncryption%2Fmaster%2FEnableEncryptionOnRunningWindowsVM-AADClientCert-WithKek.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
