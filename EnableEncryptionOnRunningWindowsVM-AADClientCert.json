@@ -38,12 +38,6 @@
             "metadata": {
                 "Description": "Type of the volume OS or Data to perform encryption operation"
             }
-        },
-        "osDiskName": {
-            "type": "string",
-            "metadata": {
-                "Description": "name of the OS disk on which encryption needs to be enabled"
-            }
         }
     },
     "variables": {
@@ -81,7 +75,6 @@
       "properties": {
         "storageProfile": {
           "osDisk": {
-            "name": "[reference(resourceId('Microsoft.Compute/virtualMachines',  parameters('vmName'))).StorageProfile.OSDisk.Name]",
             "encryptionSettings": {
               "diskEncryptionKey": {
                 "sourceVault": {
